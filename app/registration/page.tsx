@@ -1,8 +1,8 @@
 import Image from "next/image";
-import LoginForm from "../components/Form/LoginForm";
+import RegistrationForm from "../components/Form/RegistrationForm";
 import Shapes from "../components/Shapes/Shapes";
 
-const Login = () => {
+const Registration = () => {
   return (
     <section className="relative bg-bg1 min-h-screen overflow-hidden flex items-center py-10 lg:py-0">
       {/* Decorative Shapes */}
@@ -16,8 +16,8 @@ const Login = () => {
             <div className="flex justify-center lg:justify-start">
               <div className="w-full max-w-[600px]">
                 <Image
-                  src="/images/login.png"
-                  alt="Login"
+                  src="/images/registration.png"
+                  alt="Registration"
                   width={600}
                   height={600}
                   className="w-full h-auto"
@@ -27,9 +27,9 @@ const Login = () => {
             </div>
           </div>
 
-          {/* Right Side - Login Form */}
+          {/* Right Side - Registration Form */}
           <div className="py-[100px] w-full lg:w-4/12 xl:w-4/12">
-            <LoginForm />
+            <RegistrationForm />
           </div>
         </div>
       </div>
@@ -37,4 +37,4 @@ const Login = () => {
   );
 };
 
-export default Login;
+export default Registration;
