@@ -1,8 +1,12 @@
 "use client";
 
-import Image from "next/image";
 import Link from "next/link";
 import { useState } from "react";
+import AuthFormFooter from "../Auth/AuthFormFooter";
+import AuthFormHeader from "../Auth/AuthFormHeader";
+import FormDivider from "../Auth/FormDivider";
+import GoogleAuthButton from "../Auth/GoogleAuthButton";
+import PrimaryButton from "../Auth/PrimaryButton";
 
 const LoginForm = () => {
   const [email, setEmail] = useState("");
@@ -15,43 +19,21 @@ const LoginForm = () => {
     console.log({ email, password, rememberMe });
   };
 
+  const handleGoogleLogin = () => {
+    // Handle Google login API call
+    console.log("Google login initiated");
+  };
+
   return (
     <div className="bg-white rounded-2xl shadow-lg p-6 sm:p-8 lg:p-10 max-w-[480px] mx-auto lg:mx-0">
-      {/* Logo */}
-      <div className="mb-7">
-        <Image
-          src="/images/logo.svg"
-          alt="Logo"
-          width={150}
-          height={40}
-          className="h-10 w-auto"
-        />
-      </div>
+      <AuthFormHeader subtitle="Welcome back" title="Login to your account" />
 
-      {/* Welcome Text */}
-      <p className="text-primary7 text-sm mb-2">Welcome back</p>
-      <h4 className="text-2xl lg:text-3xl font-semibold text-primary mb-12">
-        Login to your account
-      </h4>
+      <GoogleAuthButton
+        text="Or sign-in with google"
+        onGoogleAuth={handleGoogleLogin}
+      />
 
-      {/* Google Sign-in Button */}
-      <button
-        type="button"
-        className="w-full bg-white border border-border2 rounded-lg py-3 px-4 flex items-center justify-center gap-3 hover:bg-gray-50 transition-colors mb-10"
-      >
-        <Image src="/images/google.svg" alt="Google" width={20} height={20} />
-        <span className="text-primary font-medium">Or sign-in with google</span>
-      </button>
-
-      {/* Divider */}
-      <div className="relative mb-10">
-        <div className="absolute inset-0 flex items-center">
-          <div className="w-full border-t border-border2"></div>
-        </div>
-        <div className="relative flex justify-center">
-          <span className="bg-white px-4 text-primary7 text-sm">Or</span>
-        </div>
-      </div>
+      <FormDivider />
 
       {/* Login Form */}
       <form onSubmit={handleSubmit}>
@@ -108,27 +90,14 @@ const LoginForm = () => {
           </Link>
         </div>
 
-        {/* Login Button */}
-        <button
-          type="submit"
-          className="w-full bg-primary5 text-white font-medium py-3.5 px-6 rounded-lg hover:bg-opacity-90 transition-all shadow-md hover:shadow-lg mb-16"
-        >
-          Login now
-        </button>
+        <PrimaryButton text="Login now" type="submit" />
       </form>
 
-      {/* Create Account Link */}
-      <div className="text-center">
-        <p className="text-sm text-primary7">
-          Don&apos;t have an account?{" "}
-          <Link
-            href="/registration"
-            className="text-primary5 font-medium hover:underline"
-          >
-            Create New Account
-          </Link>
-        </p>
-      </div>
+      <AuthFormFooter
+        text="Don't have an account?"
+        linkText="Create New Account"
+        linkHref="/registration"
+      />
     </div>
   );
 };

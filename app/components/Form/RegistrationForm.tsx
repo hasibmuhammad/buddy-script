@@ -1,8 +1,11 @@
 "use client";
 
-import Image from "next/image";
-import Link from "next/link";
 import { useState } from "react";
+import AuthFormFooter from "../Auth/AuthFormFooter";
+import AuthFormHeader from "../Auth/AuthFormHeader";
+import FormDivider from "../Auth/FormDivider";
+import GoogleAuthButton from "../Auth/GoogleAuthButton";
+import PrimaryButton from "../Auth/PrimaryButton";
 
 const RegistrationForm = () => {
   const [email, setEmail] = useState("");
@@ -16,43 +19,21 @@ const RegistrationForm = () => {
     console.log({ email, password, repeatPassword, agreeToTerms });
   };
 
+  const handleGoogleRegister = () => {
+    // Handle Google registration API call
+    console.log("Google registration initiated");
+  };
+
   return (
     <div className="bg-white rounded-2xl shadow-lg p-6 sm:p-8 lg:p-10 max-w-[480px] mx-auto lg:mx-0">
-      {/* Logo */}
-      <div className="mb-7">
-        <Image
-          src="/images/logo.svg"
-          alt="Logo"
-          width={150}
-          height={40}
-          className="h-10 w-auto"
-        />
-      </div>
+      <AuthFormHeader subtitle="Get Started Now" title="Registration" />
 
-      {/* Welcome Text */}
-      <p className="text-primary7 text-sm mb-2">Get Started Now</p>
-      <h4 className="text-2xl lg:text-3xl font-semibold text-primary mb-12">
-        Registration
-      </h4>
+      <GoogleAuthButton
+        text="Register with google"
+        onGoogleAuth={handleGoogleRegister}
+      />
 
-      {/* Google Sign-up Button */}
-      <button
-        type="button"
-        className="w-full bg-white border border-border2 rounded-lg py-3 px-4 flex items-center justify-center gap-3 hover:bg-gray-50 transition-colors mb-10"
-      >
-        <Image src="/images/google.svg" alt="Google" width={20} height={20} />
-        <span className="text-primary font-medium">Register with google</span>
-      </button>
-
-      {/* Divider */}
-      <div className="relative mb-10">
-        <div className="absolute inset-0 flex items-center">
-          <div className="w-full border-t border-border2"></div>
-        </div>
-        <div className="relative flex justify-center">
-          <span className="bg-white px-4 text-primary7 text-sm">Or</span>
-        </div>
-      </div>
+      <FormDivider />
 
       {/* Registration Form */}
       <form onSubmit={handleSubmit}>
@@ -117,27 +98,14 @@ const RegistrationForm = () => {
           </div>
         </div>
 
-        {/* Register Button */}
-        <button
-          type="submit"
-          className="w-full bg-primary5 text-white font-medium py-3.5 px-6 rounded-lg hover:bg-opacity-90 transition-all shadow-md hover:shadow-lg mb-16"
-        >
-          Register now
-        </button>
+        <PrimaryButton text="Register now" type="submit" />
       </form>
 
-      {/* Login Link */}
-      <div className="text-center">
-        <p className="text-sm text-primary7">
-          Already have an account?{" "}
-          <Link
-            href="/login"
-            className="text-primary5 font-medium hover:underline"
-          >
-            Login
-          </Link>
-        </p>
-      </div>
+      <AuthFormFooter
+        text="Already have an account?"
+        linkText="Login"
+        linkHref="/login"
+      />
     </div>
   );
 };
